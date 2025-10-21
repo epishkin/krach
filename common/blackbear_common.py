@@ -8,6 +8,14 @@ AHF_SeasonId = 3659
 AGHF_SeasonId = 3663
 THF_SeasonId = 3664
 
+# Hardcoded EJ seasons
+EJ26_SeasonId = 10358
+EJ25_SeasonId = 6466
+
+# Hardcoded NJYHL MAHA seasons
+NJ26_SeasonId = 10570
+NJ25_SeasonId = 6541
+
 #----------------------------------------------------------------------------
 THF_DivisionsIgnore = {
     'THF West',
@@ -38,6 +46,8 @@ class League(Enum):
     AHF = 1
     AGHF = 2
     THF = 3
+    EJ = 4
+    NJ = 5
 
 def getSubDivision(league, numbertOfTeams, teamRank):
     NO_SUBDIVISION = ""
@@ -94,6 +104,10 @@ def getSubDivision(league, numbertOfTeams, teamRank):
                 if teamRank >=  7 and teamRank <= 10: return SUBDIVISIONS[1]
                 if teamRank > 10: return NO_SUBDIVISION
             return NO_SUBDIVISION
+        case League.EJ:
+            return NO_SUBDIVISION
+        case League.NJ:
+            return NO_SUBDIVISION
         case _:
             raise RuntimeError("Invalid league")
 
@@ -102,5 +116,7 @@ def getLeagueAbbreviation(league):
         case League.AHF: return "AHF"
         case League.AGHF: return "AGHF"
         case League.THF: return "THF"
+        case League.EJ: return "EJ"
+        case League.NJ: return "NJ"
         case _:
             raise RuntimeError("Invalid league")
